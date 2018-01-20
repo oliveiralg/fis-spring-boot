@@ -1,4 +1,4 @@
-package fis.login.route;
+package fis.login.common.route;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
@@ -10,16 +10,16 @@ public class TokenValidationRoute extends RouteBuilder{
 
 	@Override
 	public void configure() throws Exception {
-		from("direct:token-validation")
-			.id("direct-token-validation")
+		from("direct:validar-token")
+		.routeId("direct-validar-token")
 			.process(exchange -> {
 				final byte[] sharedSecret = (byte[]) exchange.getIn().getHeader("JWT_SECRET");
-				final String JWTToken = exchange.getIn().getHeader("JWT_Token", String.class);
+				final String JWTToken = exchange.getIn().getHeader("JWT_TOKEN", String.class);
 				
 				JWTVerify verify = new JWTVerify(sharedSecret, JWTToken);
 				
-				exchange.setProperty("User", verify.getUser());
-				exchange.getIn().setHeader("PERMISSIONS", verify.getUser().getRole());
+				exchange.setProperty("Login", verify.getLogin());
+				exchange.getIn().setHeader("PERMISSIONS", verify.getLogin().getRole());
 			})
 			.end();
 	}

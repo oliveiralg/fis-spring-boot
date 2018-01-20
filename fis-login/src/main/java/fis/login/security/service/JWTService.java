@@ -15,13 +15,13 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTClaimsSet.Builder;
 import com.nimbusds.jwt.SignedJWT;
 
-import fis.login.model.User;
+import fis.login.model.Login;
 import fis.login.security.model.JWTToken;
 
 @Component
 public class JWTService {
 
-	public JWTToken getJWTToken(final User user) throws JOSEException, ParseException {
+	public JWTToken getJWTToken(final Login login) throws JOSEException, ParseException {
 
 		// Generate random 256-bit (32-byte) shared secret
 		SecureRandom random = new SecureRandom();
@@ -36,8 +36,8 @@ public class JWTService {
 
 		JWTClaimsSet.Builder builder = new Builder();
 
-		builder.claim("ROLE", user.getRole());
-		builder.subject(user.getEmail());
+		builder.claim("PASSWORD", login.getPassword());
+		builder.subject(login.getUsername());
 		builder.expirationTime(getExpirationTime());
 
 		claimsSet = builder.build();

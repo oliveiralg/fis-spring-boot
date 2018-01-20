@@ -8,7 +8,7 @@ public abstract class SecurityRouteBuilder extends LoggingRouteBuilder {
         //@formatter:off
         interceptFrom("^((?!direct).)*$")
             .log(LoggingLevel.DEBUG, "fis.login.route.builder.security", "Validate Token...")
-            .to("direct:token-validation");
+            .to("direct:validar-token");
         //@formatter:on
 
         super.checkInitialized();

@@ -3,10 +3,9 @@ package fis.login.security.processor;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
-import fis.login.model.User;
+import fis.login.model.Login;
 import fis.login.security.model.JWTToken;
 import fis.login.security.service.JWTService;
-
 
 public class JWTServiceProcessor implements Processor {
 	
@@ -19,8 +18,8 @@ public class JWTServiceProcessor implements Processor {
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		
-		User user = exchange.getIn().getBody(User.class);
-		JWTToken jwtToken = jwtService.getJWTToken(user);
+		Login login = exchange.getIn().getBody(Login.class);
+		JWTToken jwtToken = jwtService.getJWTToken(login);
 		exchange.getIn().setBody(jwtToken);
 		
 	}

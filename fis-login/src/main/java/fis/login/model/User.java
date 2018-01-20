@@ -4,10 +4,8 @@ public class User {
 
 	private String username;
 	private String name;
-	private String role;
 	private String email;
 	private String token;
-	private Long expiration;
 
 	public String getUsername() {
 		return username;
@@ -25,14 +23,6 @@ public class User {
 		this.name = name;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -48,13 +38,4 @@ public class User {
 	public void setToken(String token) {
 		this.token = token;
 	}
-
-	public Long getExpiration() {
-		return expiration;
-	}
-
-	public void setExpiration(Long expiration) {
-		this.expiration = expiration;
-	}
-
 }

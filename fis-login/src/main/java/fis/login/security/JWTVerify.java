@@ -9,11 +9,12 @@ import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.SignedJWT;
 
+import fis.login.model.Login;
 import fis.login.model.User;
 
 public class JWTVerify {
 	
-	private User user;
+	private Login login;
 	
 	public JWTVerify() {
 	}
@@ -33,16 +34,15 @@ public class JWTVerify {
 			throw new SecurityException();
 		}
 
-		this.user = new Gson().fromJson(signedJWT.getPayload().toString(), User.class);
+		this.login = new Gson().fromJson(signedJWT.getPayload().toString(), Login.class);
 
-		if (new Date().getTime() > this.user.getExpiration()) {
+		if (new Date().getTime() > this.login.getExpiration()) {
 			throw new SecurityException();
 		}
-
 	}
 	
-	public User getUser() {
-		return user;
+	public Login getLogin() {
+		return login;
 	}
 
 }

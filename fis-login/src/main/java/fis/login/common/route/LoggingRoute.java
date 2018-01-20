@@ -1,4 +1,4 @@
-package fis.login.route;
+package fis.login.common.route;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
