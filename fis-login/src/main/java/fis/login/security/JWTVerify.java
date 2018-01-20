@@ -10,7 +10,6 @@ import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.SignedJWT;
 
 import fis.login.model.Login;
-import fis.login.model.User;
 
 public class JWTVerify {
 	
